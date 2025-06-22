@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Booking Cancellation Predictor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body class="text-white">
+    <div class="grid-bg"></div>
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+      <div class="text-center mb-12">
+        <div class="step-indicator">{ AI BOOKING CANCELLATIONS PREDICTOR }</div>
+        <h1 class="main-title">
+          Are You A Hotel <span class="accent-text">Manager</span><br />
+          Seeking Insights?
+        </h1>
+        <p class="text-gray-400 text-lg font-light max-w-md mx-auto">
+          At BookingAI, our purpose is to help you predict cancellations.
+        </p>
+      </div>
+
+      <div class="sphere-container">
+        <div class="orbital-ring ring-1">
+          <div class="orbital-dot dot-1"></div>
+          <div class="orbital-dot dot-2"></div>
+        </div>
+        <div class="orbital-ring ring-2">
+          <div class="orbital-dot dot-3"></div>
+          <div class="orbital-dot dot-4"></div>
+        </div>
+
+        <div class="sphere">
+          <div class="sphere-text">
+            <div class="step-indicator" id="sphereStep">{ 01 }</div>
+            <div id="sphereText">Enter booking details<br />for analysis.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-container w-full max-w-4xl">
+        <form id="predictionForm" method="POST">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <input
+              type="number"
+              name="lead_time"
+              placeholder="Lead Time (Days)"
+              required
+              class="form-input"
+              min="0"
+            />
+            <input
+              type="number"
+              step="0.01"
+              name="avg_price_per_room"
+              placeholder="Avg. Price Per Room"
+              required
+              class="form-input"
+              min="0"
+            />
+            <input
+              type="number"
+              name="no_of_special_requests"
+              placeholder="Special Requests"
+              required
+              class="form-input"
+              min="0"
+            />
+
+            <select name="market_segment_type" required class="form-input">
+              <option value="" disabled selected>Market Segment</option>
+              <option value="4">Online</option>
+              <option value="3">Offline</option>
+              <option value="2">Corporate</option>
+              <option value="1">Complementary</option>
+              <option value="0">Aviation</option>
+            </select>
+
+            <select name="room_type_reserved" required class="form-input">
+              <option value="" disabled selected>Meal Plan</option>
+              <option value="0">Meal Plan 1</option>
+              <option value="1">Meal Plan 2</option>
+              <option value="2">Meal Plan 3</option>
+              <option value="3">Not Selected</option>
+            </select>
+
+            <select name="arrival_month" required class="form-input">
+              <option value="" disabled selected>Arrival Month</option>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+
+            <select name="arrival_date" required class="form-input">
+              <option value="" disabled selected>Arrival Date</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option>
+            </select>
+
+            <input
+              type="number"
+              name="no_of_week_nights"
+              placeholder="Weekday Nights"
+              required
+              class="form-input"
+              min="0"
+            />
+            <input
+              type="number"
+              name="no_of_weekend_nights"
+              placeholder="Weekend Nights"
+              required
+              class="form-input"
+              min="0"
+            />
+
+            <select name="type_of_meal_plan" required class="form-input">
+              <option value="" disabled selected>Meal Plan</option>
+              <option value="0">Meal Plan 1</option>
+              <option value="1">Meal Plan 2</option>
+              <option value="2">Meal Plan 3</option>
+              <option value="3">Not Selected</option>
+            </select>
+          </div>
+
+          <div class="text-center mt-8">
+            <button type="submit" class="predict-btn" id="predictBtn">
+              <ion-icon name="analytics-outline" class="mr-2"></ion-icon>
+              <span id="btnText">Analyze Booking</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {% if prediction is defined %}
+      <div id="resultSection" class="w-full max-w-2xl">
+        <div class="result-card text-center">
+          <div class="step-indicator">{ RESULT }</div>
+          {% if prediction == 1 %}
+          <h2 class="text-2xl font-light mb-4">High Cancellation Risk</h2>
+          <p class="text-gray-400">
+            This booking shows patterns associated with cancellations. Consider
+            risk mitigation strategies.
+          </p>
+          <div class="mt-6">
+            <div class="text-6xl mb-4">
+              <ion-icon name="warning" style="color: #ef4444"></ion-icon>
+            </div>
+          </div>
+          {% else %}
+          <h2 class="text-2xl font-light mb-4">Low Cancellation Risk</h2>
+          <p class="text-gray-400">
+            This booking shows strong indicators of completion. Proceed with
+            confidence.
+          </p>
+          <div class="mt-6">
+            <div class="text-6xl mb-4">
+              <ion-icon
+                name="checkmark-circle"
+                style="color: #22c55e"
+              ></ion-icon>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      <footer class="text-center mt-12 text-gray-500 text-sm">
+        <p>Github <a href="https://github.com/Nevin-A-S">Nevin-A-S</a></p>
+      </footer>
+    </div>
+
+    <script>
+      const form = document.getElementById("predictionForm");
+      const sphereText = document.getElementById("sphereText");
+      const sphereStep = document.getElementById("sphereStep");
+      const predictBtn = document.getElementById("predictBtn");
+      const btnText = document.getElementById("btnText");
+
+      const inputs = document.querySelectorAll(".form-input");
+      let filledInputs = 0;
+
+      inputs.forEach((input) => {
+        input.addEventListener("input", function () {
+          filledInputs = Array.from(inputs).filter(
+            (inp) => inp.value.trim() !== ""
+          ).length;
+
+          if (filledInputs === 0) {
+            sphereStep.textContent = "{ 01 }";
+            sphereText.innerHTML = "Enter booking details<br>for analysis.";
+          } else if (filledInputs < inputs.length / 2) {
+            sphereStep.textContent = "{ 02 }";
+            sphereText.innerHTML = "Continue filling<br>the form.";
+          } else if (filledInputs < inputs.length) {
+            sphereStep.textContent = "{ 03 }";
+            sphereText.innerHTML = "Almost ready<br>for prediction.";
+          } else {
+            sphereStep.textContent = "{ 04 }";
+            sphereText.innerHTML = "Ready to analyze<br>your booking.";
+          }
+        });
+      });
+
+      form.addEventListener("submit", function (e) {
+        predictBtn.disabled = true;
+        btnText.textContent = "Analyzing...";
+        sphereStep.textContent = "{ ... }";
+        sphereText.innerHTML = "Analyzing booking<br>patterns...";
+      });
+
+      {% if prediction is defined %}
+      setTimeout(() => {
+        document.getElementById("resultSection").scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }, 500);
+      {% endif %}
+    </script>
+  </body>
+</html>
