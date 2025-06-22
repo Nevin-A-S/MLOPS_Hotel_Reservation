@@ -10,7 +10,8 @@ RUN apt-get update && \
     libgomp1 \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/* \
-    python3 -m pip install --upgrade pip
+    python3 -m pip install --upgrade pip \
+    ln -s /usr/bin/python3 /usr/bin/python
 
 COPY . .
 
