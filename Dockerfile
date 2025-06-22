@@ -11,9 +11,11 @@ RUN apt-get update && \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/* \
     python3 -m pip install --upgrade pip \
-    ln -s /usr/bin/python3 /usr/bin/python
+    ln -s /usr/bin/python3 /usr/bin/python \
+    apt install python3.11-venv
 
 COPY . .
+
 
 RUN pip install --no-cache-dir -e .
 
