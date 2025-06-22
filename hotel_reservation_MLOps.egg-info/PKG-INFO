@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: hotel_reservation-MLOps
+Version: 0.0.1
+Summary: A MLOps project for hotel reservation prediction
+Author: Nevin A S
+Author-email: nevinajithkumar@gmail.com
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: google-cloud-storage
+Requires-Dist: scikit-learn
+Requires-Dist: pyyaml
+Requires-Dist: imbalanced-learn
+Requires-Dist: lightgbm
+Requires-Dist: mlflow
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: summary
