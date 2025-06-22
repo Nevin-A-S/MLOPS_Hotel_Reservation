@@ -21,7 +21,6 @@ pipeline{
                 script {
                     echo 'setting up virtual environment and installing dependencies...'
                     sh'''
-                    apt install python3.11-venv
                     python -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
 
