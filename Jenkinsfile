@@ -33,6 +33,26 @@ pipeline{
             }
         }
 
+        stage('Train Model') {
+            steps {
+                withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]){
+                    script {
+                        echo 'Authenticating to GCP and running training pipeline...'
+                        sh '''
+                        export PATH=$PATH:${GCLOUD_PATH}
+                        gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+                        gcloud config set project ${GCP_PROJECT}
+
+                        # Activate the virtual environment and run the training script
+                        echo "Running the training script..."
+                        . ${VENV_DIR}/bin/activate
+                        python pipeline/training_pipeline.py
+                        '''
+                    }
+                }
+            }
+        }
+
         stage('Builing and Pushing Docker Image to GCR') {
             steps {
                 withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]){
