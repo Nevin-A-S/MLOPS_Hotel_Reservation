@@ -89,7 +89,7 @@ pipeline{
 
                         gcloud config set project ${GCP_PROJECT}
 
-                        gcloud run deplot ml-project \
+                        gcloud run deploy ml-project \
                             --image=gcr.io/${GCP_PROJECT}/mlops-hotel-reservation:latest \
                             --platform=managed \
                             --region=us-central1 \
